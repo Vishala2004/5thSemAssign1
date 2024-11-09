@@ -1,4 +1,3 @@
-// stacks/Stack.js
 class Stack {
     constructor() {
         this.items = [];

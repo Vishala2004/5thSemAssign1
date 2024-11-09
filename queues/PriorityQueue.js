@@ -1,4 +1,4 @@
-// queues/PriorityQueue.js
+
 class PriorityQueue {
     constructor() {
         this.items = [];
@@ -6,7 +6,7 @@ class PriorityQueue {
 
     enqueue(item, priority) {
         this.items.push({ item, priority });
-        this.items.sort((a, b) => a.priority - b.priority); // Sort by priority
+        this.items.sort((a, b) => a.priority - b.priority); 
     }
 
     dequeue() {

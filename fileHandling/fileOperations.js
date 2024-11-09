@@ -1,14 +1,11 @@
-// fileHandling/fileOperations.js
 const fs = require('fs');
 const path = require('path');
 const PDFDocument = require('pdfkit');
 
-// Generate PDF invoice
 function generateInvoice(request) {
     const doc = new PDFDocument();
     const fileName = path.join(__dirname, '../invoices', `invoice_${request.id}.pdf`);
 
-    // Ensure invoices directory exists
     if (!fs.existsSync(path.join(__dirname, '../invoices'))) {
         fs.mkdirSync(path.join(__dirname, '../invoices'), { recursive: true });
     }
@@ -26,18 +23,6 @@ function generateInvoice(request) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-// Generate PDF invoice
 function generateInvoice(request) {
     const invoiceDir = path.join(__dirname, '../invoices');
     if (!fs.existsSync(invoiceDir)) {
@@ -47,10 +32,8 @@ function generateInvoice(request) {
     const invoicePath = path.join(invoiceDir, `invoice-${request.id}.pdf`);
     const doc = new PDFDocument();
 
-    // Write to file
     doc.pipe(fs.createWriteStream(invoicePath));
 
-    // Add invoice content
     doc.fontSize(20).text('Utility Bill Payment Invoice', { align: 'center' });
     doc.moveDown();
     doc.fontSize(12).text(`Date: ${request.date}`);
@@ -60,7 +43,6 @@ function generateInvoice(request) {
     doc.text(`Amount: $${request.amount}`);
     doc.text(`Urgent: ${request.urgent ? 'Yes' : 'No'}`);
     
-    // Finalize the document
     doc.end();
 
     console.log(`Invoice generated: ${invoicePath}`);

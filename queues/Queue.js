@@ -1,4 +1,3 @@
-// queues/Queue.js
 class Queue {
     constructor() {
         this.items = [];
